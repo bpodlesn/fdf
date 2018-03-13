@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	draw_coord(t_mlx mlx, int c)
+void		draw_coord(t_mlx mlx, int c)
 {
 	if (c == 1)
 		draw_lines(mlx);
@@ -20,7 +20,7 @@ void	draw_coord(t_mlx mlx, int c)
 		mlx_clear_window(mlx.init, mlx.window);
 }
 
-void	draw_lines(t_mlx mlx)
+void		draw_lines(t_mlx mlx)
 {
 	int cnt;
 
@@ -48,7 +48,7 @@ void	draw_lines(t_mlx mlx)
 	}
 }
 
-t_mlx	start_draw(int i, int j, t_mlx mlx, int k)
+t_mlx		start_draw(int j, t_mlx mlx, int k)
 {
 	double xx;
 	double yy;
@@ -60,10 +60,6 @@ t_mlx	start_draw(int i, int j, t_mlx mlx, int k)
 	{
 		while (j++ != mlx.count)
 		{
-			if (i == 1)
-				mlx_pixel_put(mlx.init, mlx.window, xx, yy, mlx.types[k].color);
-			else
-				mlx_pixel_put(mlx.init, mlx.window, xx, yy, 0);
 			mlx.types[k].x = xx;
 			mlx.types[k].y = yy;
 			k++;
@@ -77,10 +73,34 @@ t_mlx	start_draw(int i, int j, t_mlx mlx, int k)
 	return (mlx);
 }
 
-void	instruction(t_mlx mlx)
+t_mlx		reset(t_mlx mlx)
 {
-	mlx_string_put(mlx.init, mlx.window, 5, 20, 0xffffff,
-	"left/right/up/down to move");
-	mlx_string_put(mlx.init, mlx.window, 5, 50, 0xffffff, "+/- to zoom in/out");
-	mlx_string_put(mlx.init, mlx.window, 5, 80, 0xffffff, "rotation W/A/S/D");
+	mlx_clear_window(mlx.init, mlx.window);
+	mlx = z(mlx);
+	mlx = start_draw(0, mlx, 0);
+	mlx.center_x = (mlx.types[mlx.count - 1].x
+	- mlx.types[0].x) / 2 + mlx.types[0].x;
+	mlx.center_y = (mlx.types[mlx.count * mlx.nbl
+	- mlx.count].y - mlx.types[0].y) / 2 + mlx.types[0].y;
+	draw_coord(mlx, 1);
+	tak_nado(mlx);
+	return (mlx);
+}
+
+void		instruction(t_mlx mlx)
+{
+	mlx_string_put(mlx.init, mlx.window, 5, 20, 0x51f6ff,
+	"LEFT/RIGHT/UP/DOWN");
+	mlx_string_put(mlx.init, mlx.window, 190, 20, 0xffffff,
+	"to move");
+	mlx_string_put(mlx.init, mlx.window, 5, 50, 0x51f6ff, "+/-");
+	mlx_string_put(mlx.init, mlx.window, 40, 50, 0xffffff,
+	"to ZOOM in/out");
+	mlx_string_put(mlx.init, mlx.window, 5, 80, 0xffffff, "ROTATION -");
+	mlx_string_put(mlx.init, mlx.window, 115, 80, 0x51f6ff, "W/A/S/D");
+	mlx_string_put(mlx.init, mlx.window, 5, 110, 0xffffff, "ROTATION -");
+	mlx_string_put(mlx.init, mlx.window, 115, 110, 0x51f6ff, "Q/E");
+	mlx_string_put(mlx.init, mlx.window, 5, 140, 0xffffff, "RESET -");
+	mlx_string_put(mlx.init, mlx.window, 85, 140, 0x51f6ff, "R");
+	mlx_string_put(mlx.init, mlx.window, 5, 170, 0xe5194f, "EXIT - ESC");
 }

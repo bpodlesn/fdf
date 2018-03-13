@@ -79,23 +79,3 @@ t_mlx	ft_hook_down(t_mlx mlx)
 	instruction(mlx);
 	return (mlx);
 }
-
-t_mlx	ft_zoom_in(t_mlx mlx)
-{
-	int i;
-
-	i = 0;
-	mlx_clear_window(mlx.init, mlx.window);
-	mlx = find_center(mlx);
-	while (i < mlx.count * mlx.nbl)
-	{
-		mlx.types[i].y *= 1.1;
-		mlx.types[i].x *= 1.1;
-		mlx.types[i].z *= 1.1;
-		i++;
-	}
-	mlx = back_center(mlx);
-	draw_coord(mlx, 1);
-	instruction(mlx);
-	return (mlx);
-}

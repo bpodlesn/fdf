@@ -37,6 +37,7 @@ typedef struct		s_mlx
 	double			size_y;
 	void			*init;
 	void			*window;
+	char			*buf;
 	double			x;
 	double			xx;
 	double			yy;
@@ -60,28 +61,33 @@ typedef struct		s_mlx
 
 int					ft_keys(int key, void *zlx);
 int					ft_decimal(char *str, int k);
-int					how_many(char *line);
+int					how_many(char *line, int counter);
 unsigned int		hextoint(char *temp, int answer, int count, int i);
 void				draw_lines(t_mlx mlx);
 void				instruction(t_mlx mlx);
-void				go_home(int c);
+void				go_home(int c, t_mlx mlx);
 void				draw_coord(t_mlx mlx, int c);
 void				newseg(t_mlx mlx, int c);
 t_mlx				ft_hook_right(t_mlx mlx);
-t_mlx				start_draw(int i, int j, t_mlx mlx, int k);
+t_mlx				start_draw(int j, t_mlx mlx, int k);
 t_mlx				ft_hook_left(t_mlx mlx);
 t_mlx				ft_hook_down(t_mlx mlx);
 t_mlx				ft_hook_up(t_mlx mlx);
 t_mlx				ft_zoom_in(t_mlx mlx);
 t_mlx				ft_zoom_out(t_mlx mlx);
 t_mlx				reader(t_mlx mlx, int fd);
-t_mlx				colorline(char *line, t_mlx mlx,
+t_mlx				colorline(t_mlx mlx,
 					unsigned int i, unsigned int j);
 t_mlx				find_center(t_mlx mlx);
 t_mlx				back_center(t_mlx mlx);
 t_mlx				turn_rev_y(t_mlx mlx);
-t_mlx				turn_rev_x(t_mlx mlx);
-t_mlx				turn_y(t_mlx mlx);
+t_mlx				turn_rev_x(t_mlx mlx, int c, int k);
+t_mlx				turn_y(t_mlx mlx, int c, int k);
 t_mlx				turn_x(t_mlx mlx);
+t_mlx				tak_nado(t_mlx mlx);
+t_mlx				turn_z(t_mlx mlx);
+t_mlx				turn_z_rev(t_mlx mlx);
+t_mlx				reset(t_mlx mlx);
+t_mlx				z(t_mlx mlx);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: bpodlesn <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/19 13:23:34 by bpodlesn          #+#    #+#              #
-#    Updated: 2018/03/06 13:08:10 by bpodlesn         ###   ########.fr        #
+#    Updated: 2018/03/13 14:56:20 by bpodlesn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS = main.c \
 	   liner.c \
 	   reader.c \
 	   draw.c \
+	   moves.c \
 
 OBJ =	main.o \
 	   turn_rev.o \
@@ -27,6 +28,7 @@ OBJ =	main.o \
 	   liner.o \
 	   reader.o \
 	   draw.o \
+	   moves.o \
 
 MLX = -lmlx -framework OpenGL -framework AppKit
 
@@ -39,7 +41,7 @@ all: $(NAME)
 $(NAME):
 		@ make -C libft/
 		@ gcc $(FLAGS) $(HEADER) $(SRCS)
-		@ gcc -o $(NAME) $(OBJ) libft/libft.a $(MLX)
+		@ gcc -g -o $(NAME) $(OBJ) libft/libft.a $(MLX)
 
 clean:
 		@ /bin/rm -f $(OBJ) ./fdf.h.gch

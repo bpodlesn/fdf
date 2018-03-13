@@ -41,6 +41,13 @@ int				pows(int i, int j)
 	return (i);
 }
 
+t_mlx			tak_nado(t_mlx mlx)
+{
+	turn_rev_x(mlx, 50, 0);
+	turn_y(mlx, 22, 1);
+	return (mlx);
+}
+
 unsigned int	hextoint(char *temp, int answer, int count, int i)
 {
 	int			j;
@@ -50,23 +57,21 @@ unsigned int	hextoint(char *temp, int answer, int count, int i)
 
 	hexchar = "aAbBcCdDeEfF";
 	if (temp[0] != '0' || (temp[1] != 'x' && temp[1] != 'X'))
-		go_home(2);
-	while (i != 1 && count++ > -1)
+		return (0xffffff);
+	while (--i != 1 && count++ > -1 && (c = pows(16, count)))
 	{
-		c = pows(16, count);
-		if ((temp[i] >= 33 && temp[i] <= 47) || (temp[i] >= 58 && temp[i] <= 64) || (temp[i] >= 71
-		&& temp[i] <= 96) || (temp[i] >= 103 && temp[i] <= 126))
-			go_home(2);
+		if ((temp[i] > 32 && temp[i] < 48) || (temp[i] > 57 && temp[i] < 65)
+		|| (temp[i] > 70 && temp[i] < 97) || (temp[i] > 102 && temp[i] <= 127))
+			return (0xffffff);
 		if (temp[i] >= 48 && temp[i] <= 57)
 			dec = ft_decimal(temp, i);
 		else
 		{
 			j = -1;
 			while (hexchar[++j] != '\0')
-				temp[i] == hexchar[j] ? dec = 10 + (j / 2) : 0;	
+				temp[i] == hexchar[j] ? dec = 10 + (j / 2) : 0;
 		}
 		answer += c * dec;
-		i--;
 	}
 	return (answer);
 }

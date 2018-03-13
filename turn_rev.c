@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-t_mlx		turn_rev_x(t_mlx mlx)
+t_mlx		turn_rev_x(t_mlx mlx, int c, int k)
 {
 	int		i;
 	double	y;
@@ -23,14 +23,14 @@ t_mlx		turn_rev_x(t_mlx mlx)
 	while (i < mlx.count * mlx.nbl)
 	{
 		y = mlx.types[i].y;
-		mlx.types[i].y = mlx.types[i].y * cos(5 * (3.14 / 180))
-		- mlx.types[i].z * sin(5 * (3.14 / 180));
-		mlx.types[i].z = y * sin(5 * (3.14 / 180))
-		+ mlx.types[i].z * cos(5 * (3.14 / 180));
+		mlx.types[i].y = mlx.types[i].y * cos(c * (3.14 / 180))
+		- mlx.types[i].z * sin(c * (3.14 / 180));
+		mlx.types[i].z = y * sin(c * (3.14 / 180))
+		+ mlx.types[i].z * cos(c * (3.14 / 180));
 		i++;
 	}
 	mlx = back_center(mlx);
-	draw_coord(mlx, 1);
+	draw_coord(mlx, k);
 	instruction(mlx);
 	return (mlx);
 }
@@ -81,7 +81,7 @@ t_mlx		turn_rev_y(t_mlx mlx)
 	return (mlx);
 }
 
-t_mlx		turn_y(t_mlx mlx)
+t_mlx		turn_y(t_mlx mlx, int c, int k)
 {
 	int		i;
 	double	x;
@@ -92,14 +92,14 @@ t_mlx		turn_y(t_mlx mlx)
 	while (i < mlx.count * mlx.nbl)
 	{
 		x = mlx.types[i].x;
-		mlx.types[i].x = mlx.types[i].x * cos(5 * (3.14 / 180))
-		+ mlx.types[i].z * sin(5 * (3.14 / 180));
-		mlx.types[i].z = -x * sin(5 * (3.14 / 180))
-		+ mlx.types[i].z * cos(5 * (3.14 / 180));
+		mlx.types[i].x = mlx.types[i].x * cos(c * (3.14 / 180))
+		+ mlx.types[i].z * sin(c * (3.14 / 180));
+		mlx.types[i].z = -x * sin(c * (3.14 / 180))
+		+ mlx.types[i].z * cos(c * (3.14 / 180));
 		i++;
 	}
 	mlx = back_center(mlx);
-	draw_coord(mlx, 1);
+	draw_coord(mlx, k);
 	instruction(mlx);
 	return (mlx);
 }
