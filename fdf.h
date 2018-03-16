@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpodlesn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/06 15:59:38 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/03/06 14:45:45 by bpodlesn         ###   ########.fr       */
+/*   Updated: 2018/03/16 14:09:01 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # define WIN_Y 1100
 
 # include "libft/libft.h"
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>

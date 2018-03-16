@@ -109,7 +109,7 @@ t_mlx		colorline(t_mlx mlx, unsigned int i, unsigned int j)
 		mlx.buf[i + 1] == '\n' || mlx.buf[i + 1] == '\0')))
 			mlx.types[mlx.i++].color = 16777215;
 	}
-	ft_strdel(&newline);
+	free(newline);
 	return (mlx);
 }
 
@@ -129,9 +129,9 @@ t_mlx		reader(t_mlx mlx, int fd)
 		mlx.buf = ft_strjo(ft_strjo(mlx.buf, line), "\n");
 		free(asd);
 	}
-	mlx.nbl == 0 ? go_home(0, mlx) : 0;
+	mlx.nbl == 0 ? go_home(1, mlx) : 0;
 	get_next_line(fd, &line) <= -1 ? go_home(0, mlx) : 0;
-	mlx.types = malloc(sizeof(t_types) * (mlx.nbl * mlx.count) - 1);
+	mlx.types = malloc(sizeof(t_types) * ((mlx.nbl * mlx.count) + 1));
 	mlx = colorline(mlx, -1, 0);
 	mlx = z(mlx);
 	close(fd);

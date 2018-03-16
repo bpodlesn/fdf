@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bpodlesn <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/19 13:23:34 by bpodlesn          #+#    #+#              #
-#    Updated: 2018/03/13 14:56:20 by bpodlesn         ###   ########.fr        #
+#    Updated: 2018/03/16 14:10:31 by bpodlesn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,7 @@ SRCS = main.c \
 	   draw.c \
 	   moves.c \
 
-OBJ =	main.o \
-	   turn_rev.o \
-	   hex.o \
-	   keys.o \
-	   liner.o \
-	   reader.o \
-	   draw.o \
-	   moves.o \
+OBJ =	$(SRCS:.c=.o)
 
 MLX = -lmlx -framework OpenGL -framework AppKit
 
@@ -36,12 +29,19 @@ FLAGS = -c -Wall -Werror -Wextra
 
 HEADER = fdf.h
 
-all: $(NAME)
+all: lib $(NAME)
 
-$(NAME):
-		@ make -C libft/
-		@ gcc $(FLAGS) $(HEADER) $(SRCS)
-		@ gcc -g -o $(NAME) $(OBJ) libft/libft.a $(MLX)
+$(NAME): $(OBJ) $(HEADER) libft/libft.a
+		gcc $(FLAGS) $(SRCS)
+		gcc -g -o $(NAME) $(OBJ) libft/libft.a $(MLX)
+
+libft/libft.a: lib
+
+lib:
+	make -C libft
+
+$(OBJ): %.o : %.c $(HEADER)
+	gcc $(FLAGS) $< -o $@
 
 clean:
 		@ /bin/rm -f $(OBJ) ./fdf.h.gch

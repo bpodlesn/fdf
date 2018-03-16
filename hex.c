@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hex.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bpodlesn <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bpodlesn <bpodlesn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/17 19:22:15 by bpodlesn          #+#    #+#             */
-/*   Updated: 2018/03/06 14:34:12 by bpodlesn         ###   ########.fr       */
+/*   Created: 2018/03/16 14:03:45 by bpodlesn          #+#    #+#             */
+/*   Updated: 2018/03/16 14:29:41 by bpodlesn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ t_mlx			tak_nado(t_mlx mlx)
 {
 	turn_rev_x(mlx, 50, 0);
 	turn_y(mlx, 22, 1);
+	turn_z_rev(mlx);
+	turn_z_rev(mlx);
+	turn_z_rev(mlx);
 	return (mlx);
 }
 

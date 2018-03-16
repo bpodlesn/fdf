@@ -96,15 +96,11 @@ t_mlx		z(t_mlx mlx)
 			if (mlx.buf[i] != ' ' && mlx.buf[i] != ',' && mlx.buf[i] != '\n')
 				mlx.types[mlx.i].z = 0;
 			mlx.i++;
-			while (mlx.buf[i] != ' ' && mlx.buf[i] != '\n')
+			while (mlx.buf[i] && mlx.buf[i] != ' ' && mlx.buf[i] != '\n')
 				i++;
 		}
-		if (mlx.buf[i] == ' ' || mlx.buf[i] == '\n')
-			while (mlx.buf[i] == ' ' || mlx.buf[i] == '\n')
-				i++;
-		else
-			while (mlx.buf[i] == ' ' || mlx.buf[i] == '\n')
-				i++;
+		while (mlx.buf[i] && (mlx.buf[i] == ' ' || mlx.buf[i] == '\n'))
+			i++;
 	}
 	return (mlx);
 }

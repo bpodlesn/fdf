@@ -18,7 +18,7 @@ static void	one(int key, void *zlx)
 
 	mlx = (t_mlx*)zlx;
 	if (key == 53)
-		exit(0);
+		go_home(4, *mlx);
 	if (key == 124)
 		*mlx = ft_hook_right(*mlx);
 	if (key == 123)
@@ -72,6 +72,13 @@ void		go_home(int c, t_mlx mlx)
 		ft_putstr("usage: ./fdf file");
 	if (c == 2)
 		ft_putstr("Invalid hex color");
+	if (c == 3)
+	{
+		ft_putstr("usage: ./fdf file");
+		mlx_destroy_window(mlx.init, mlx.window);
+		exit(0);
+	}
+	mlx_destroy_window(mlx.init, mlx.window);
 	free(mlx.buf);
 	free(mlx.types);
 	exit(0);
@@ -88,11 +95,12 @@ int			main(int argc, char **argv)
 	mlx.init = mlx_init();
 	mlx.window = mlx_new_window(mlx.init, WIN_X, WIN_Y, "fdf");
 	mlx_hook(mlx.window, 2, 5, ft_keys, &mlx);
-	if (argc != 2)
-		go_home(0, mlx);
+	argc != 2 ? go_home(3, mlx) : 0;
 	mlx = reader(mlx, open(argv[1], O_RDONLY));
 	mlx.x = 500;
 	mlx.y = 300;
+	mlx.count == 1 ? mlx.x = 750 : 0;
+	mlx.nbl == 1 ? mlx.y = 500 : 0;
 	mlx.zoom_x = mlx.size_x / mlx.count;
 	mlx.zoom_y = mlx.size_x / mlx.nbl;
 	mlx = start_draw(0, mlx, 0);

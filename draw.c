@@ -14,6 +14,9 @@
 
 void		draw_coord(t_mlx mlx, int c)
 {
+	if (mlx.count == 1 && mlx.nbl == 1)
+		mlx_pixel_put(mlx.init, mlx.window, mlx.types[0].x, mlx.types[0].y,
+		mlx.types[0].color);
 	if (c == 1)
 		draw_lines(mlx);
 	else
